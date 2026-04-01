@@ -1,0 +1,285 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #0e0e10;
+  --surface:   #1a1a1d;
+  --surface2:  #222226;
+  --border:    #2e2e33;
+  --accent:    #4f8ef7;
+  --text:      #d4d4d8;
+  --muted:     #71717a;
+  --danger:    #e05252;
+  --radius:    8px;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(14, 14, 16, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  gap: 16px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+header h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vol-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 14px;
+}
+
+.controls label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#volume {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+
+#volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+#stopAll {
+  background: transparent;
+  border: 1px solid rgba(224, 82, 82, 0.4);
+  color: rgba(224, 82, 82, 0.7);
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+
+#stopAll:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(224, 82, 82, 0.08);
+}
+
+/* ── Soundboard Grid ── */
+main {
+  flex: 1;
+  padding: 40px;
+}
+
+#soundboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Sound Button ── */
+.sound-btn {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  min-height: 140px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sound-btn:hover {
+  border-color: rgba(79, 142, 247, 0.5);
+  background: var(--surface2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.sound-btn:active {
+  transform: scale(0.96);
+}
+
+.sound-btn.playing {
+  border-color: var(--accent);
+  background: rgba(79, 142, 247, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(79, 142, 247, 0.2);
+}
+
+/* ── Played indicator ── */
+.sound-btn.played::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* ── Emoji ── */
+.sound-btn .emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+  transition: transform 0.12s;
+}
+
+.sound-btn:hover .emoji {
+  transform: scale(1.08);
+}
+
+/* ── Label ── */
+.sound-btn .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  opacity: 0.7;
+  word-break: break-word;
+  transition: color 0.15s, opacity 0.15s;
+}
+
+.sound-btn:hover .label {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.sound-btn.playing .label {
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* ── Key hint badge ── */
+.sound-btn .key-hint {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.58rem;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ── Ripple ── */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(79, 142, 247, 0.15);
+  transform: scale(0);
+  animation: ripple-anim 0.55s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+/* ── Missing file ── */
+.sound-btn.missing {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sound-btn.missing:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+.missing-badge {
+  font-size: 0.6rem;
+  color: #ef4444;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
