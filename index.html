@@ -17,17 +17,70 @@
     </div>
     <div class="controls">
       <div class="vol-group">
-        <label for="volume">VOL</label>
+        <label for="volume">Master</label>
         <input type="range" id="volume" min="0" max="1" step="0.05" value="0.8" />
       </div>
-      <button id="stopAll">STOP ALL</button>
+      <button id="stopAll" type="button">STOP ALL</button>
     </div>
   </header>
 
   <main>
+    <section class="fx-rack" aria-label="Audio effects">
+      <div class="fx-rack-glow" aria-hidden="true"></div>
+      <div class="fx-rack-inner">
+        <div class="fx-rack-head">
+          <span class="fx-badge">DSP</span>
+          <h2 class="fx-title">Studio rack</h2>
+          <p class="fx-sub">Biquad chain · live on every pad</p>
+        </div>
+
+        <div class="fx-sliders">
+          <div class="fx-slot">
+            <div class="fx-slot-top">
+              <label for="fxBass">Bass</label>
+              <span class="fx-readout" id="fxBassVal">0 dB</span>
+            </div>
+            <input type="range" id="fxBass" min="-12" max="18" step="1" value="0" />
+          </div>
+          <div class="fx-slot">
+            <div class="fx-slot-top">
+              <label for="fxMid">Mid</label>
+              <span class="fx-readout" id="fxMidVal">0 dB</span>
+            </div>
+            <input type="range" id="fxMid" min="-12" max="12" step="1" value="0" />
+          </div>
+          <div class="fx-slot">
+            <div class="fx-slot-top">
+              <label for="fxTreble">Treble</label>
+              <span class="fx-readout" id="fxTrebleVal">0 dB</span>
+            </div>
+            <input type="range" id="fxTreble" min="-12" max="15" step="1" value="0" />
+          </div>
+          <div class="fx-slot fx-slot-speed">
+            <div class="fx-slot-top">
+              <label for="fxSpeed">Speed</label>
+              <span class="fx-readout" id="fxSpeedVal">1.00×</span>
+            </div>
+            <input type="range" id="fxSpeed" min="0.75" max="1.25" step="0.01" value="1" />
+          </div>
+        </div>
+
+        <div class="fx-presets">
+          <span class="fx-presets-label">Presets</span>
+          <div class="fx-preset-row">
+            <button type="button" class="preset-btn active" data-preset="flat">Flat</button>
+            <button type="button" class="preset-btn" data-preset="bass">Bass+</button>
+            <button type="button" class="preset-btn" data-preset="bright">Bright</button>
+            <button type="button" class="preset-btn" data-preset="radio">Radio</button>
+            <button type="button" class="preset-btn" data-preset="night">Night</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div id="soundboard"></div>
   </main>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+Put your MP3 files in THIS folder (same place as fah.mp3).
+
+For the Bruh button to work, the file must be named exactly:
+
+  bruh.mp3
+
+Full path (Windows example):
+  ...\brainrot-soundboard\sounds\bruh.mp3
+
+If your download has a different name, either rename it to bruh.mp3
+or change the "file" field for Bruh in ../script.js to match.
