@@ -9,6 +9,7 @@ const SOUNDS = [
   { file: "fah.mp3",          label: "Fah",         emoji: "😤", key: "1" },
   { file: "joojoojoojoo.mp3", label: "Joo Joo Joo", emoji: "🎵", key: "2" },
   { file: "bruh.mp3",         label: "Bruh",        emoji: "😐", key: "3" },
+  { file: "tuco-get-out.mp3", label: "Get out",     emoji: "🚪", key: "4" },
 ];
 
 // ── DOM ────────────────────────────────────────────────────────────
